@@ -5,8 +5,8 @@
 #     550 MiB is recommended to avoid MiB/MB confusion and accidentally creating FAT16.
 
 # parted: create partition
-        parted -s /dev/sda print                        # -s; --script; verify if label is present eg gpt or legacy bios
-        parted -s -a optimal -- /dev/sda mklabel gpt                        # -a; --align optimal
+        parted /dev/sda print                                                # verify if label is present eg gpt or legacy bios
+        parted -s -a optimal -- /dev/sda mklabel gpt                         # -a; --align optimal
         parted -s -a optimal -- /dev/sda mkpart ESP fat32 0% 550MiB          # ESP/EFI 0550MiB *start with 0% no other unit worked for me*
         parted -s -- /dev/sda set 1 esp on                                   # esp on = UEFI; boot on = BIOS
         parted -s -a optimal -- /dev/sda mkpart primary ext4 577MB 1577MB    # boot    1000MiB *inserted suggestion*
