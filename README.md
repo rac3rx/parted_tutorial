@@ -6,7 +6,7 @@
 ###    As per the Arch Linux wiki, to avoid potential problems with some EFIs, ESP size should be at least 512 MiB.
 ###    550 MiB is recommended to avoid MiB/MB confusion and accidentally creating FAT16.
 
-#### parted: create partition
+#### parted: create multiple partitions
 #### example 1 format
         parted /dev/sda print                                                # verify if label is present eg gpt or legacy bios
         parted -s -a optimal -- /dev/sda mklabel gpt                         # create gpt lable; -s; --script, -a; --align optimal, "--" no more options
