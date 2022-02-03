@@ -1,6 +1,6 @@
-# parted tutorial
+# Parted Tutorial
 
-## ESP SIZE:
+## ESP Size:
 
 ###    The Boot Loader Specification which suggests that the ESP partition should be about 477 MiB (500 MB).
 ###    As per the Arch Linux wiki, to avoid potential problems with some EFIs, ESP size should be at least 512 MiB.
@@ -9,7 +9,7 @@
 #### parted: create partition
 #### example 1 format
         parted /dev/sda print                                                # verify if label is present eg gpt or legacy bios
-        parted -s -a optimal -- /dev/sda mklabel gpt                         # -a; --align optimal
+        parted -s -a optimal -- /dev/sda mklabel gpt                         # create gpt lable; -s; --script, -a; --align optimal, "--" no more options
         parted -s -a optimal -- /dev/sda mkpart ESP fat32 0% 550MiB          # ESP/EFI 0550MiB *start with 0% no other unit worked for me*
         parted -s -- /dev/sda set 1 esp on                                   # esp on = UEFI; boot on = BIOS
         parted -s -a optimal -- /dev/sda mkpart primary ext4 577MB 1577MB    # boot    1000MiB *inserted suggestion*
